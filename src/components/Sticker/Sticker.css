@@ -1,0 +1,56 @@
+.sticker {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 200px;
+    border: 1px solid #000;
+    margin: 0 20px 20px 0;
+}
+.sticker-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 30px;
+    padding: 5px;
+    border-bottom: 1px solid #000;
+    background-color: #222;
+    cursor: grab;
+}
+.sticker-header:active {
+    cursor: grabbing;
+}
+.sticker-area {
+    height: calc(100% - 30px);
+    font-size: 1rem;
+    padding: 5px;
+}
+.sticker-text {
+    height: calc(100% - 30px);
+    font-size: 1rem;
+    padding: 5px;
+    background-color: #fff;
+    overflow: auto;
+    word-wrap: break-word;
+}
+.save-btn, .edit-btn, .del-btn {
+    height: 20px;
+    font-size: 1rem;
+    line-height: 20px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 1px 1px #777;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+.save-btn, .edit-btn {
+    background-color: green;
+    margin-right: 5px;
+}
+.del-btn {
+    background-color: red;
+    margin-right: 5px;
+}
+.del-btn:active, .save:active, .edit-btn:active {
+    box-shadow: none;
+}

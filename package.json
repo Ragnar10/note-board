@@ -1,0 +1,36 @@
+{
+  "name": "note-board",
+  "version": "0.1.0",
+  "private": true,
+  "description": "note board",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ragnar10/"
+  },
+  "author": "Gudov Oleg",
+  "license": "ISC",
+  "scripts": {
+    "start": "set PORT=8080 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.1"
+  },
+  "devDependencies": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

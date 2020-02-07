@@ -1,0 +1,26 @@
+.board-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    height: 30px;
+    background-color: chocolate;
+}
+.add-btn, .delAll-btn {
+    height: 30px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 1px 2px #222;
+    background-color: green;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+.delAll-btn {
+    background-color: red;
+    margin-right: 10px;
+}
+.add-btn:active, .delAll-btn:active {
+    box-shadow: none;
+}
+
