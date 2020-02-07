@@ -69,7 +69,7 @@ const App = () => {
             let left = event.pageX - shiftX - board.offsetLeft;;
             let top = event.pageY - shiftY -  board.offsetTop;
 
-            let right = board.offsetWidth - left - grabElem.offsetWidth;;
+            let right = board.offsetWidth - left - grabElem.offsetWidth;
             let bottom = board.offsetHeight - top - grabElem.offsetHeight;
 
             if (left < 0 || top < 0 || right < 0 || bottom < 0) {
