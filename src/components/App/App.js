@@ -5,7 +5,7 @@ import './App.css';
 
 const App = () => {
 
-    const [stickersArray, setStickersArray] = useState([{id: 0, value: '', save: false, x: 0, y: 0, position: 'relative'}]);
+    const [stickersArray, setStickersArray] = useState([]);
 
     useEffect(() => {
         const stickersArrayFromStorage = JSON.parse(localStorage.getItem('stickers'));
@@ -20,21 +20,20 @@ const App = () => {
 
 
     const addStickers = () => {
-        const newId = stickersArray[stickersArray.length - 1].id;
+        const newId = stickersArray.length ? stickersArray[stickersArray.length - 1].id : 0;
         setStickersArray([...stickersArray, {id: newId + 1, value: '', save: false, x: 0, y: 0, position: 'relative'}]);
     };
 
     const deleteStickers = () => {
-        setStickersArray([...stickersArray.slice(0, 1)]);
+        setStickersArray([...stickersArray.slice(-1, 0)]);
     };
 
     function setSticker(id, key, value) {
         const indexSticker = stickersArray.findIndex((item) => item.id === id);
         const sticker = stickersArray[indexSticker];
-        const newStickersArray = (key === undefined) ? [...stickersArray.slice(0, indexSticker), ...stickersArray.slice(indexSticker + 1)] :
+        return (key === undefined) ? [...stickersArray.slice(0, indexSticker), ...stickersArray.slice(indexSticker + 1)] :
             [...stickersArray.slice(0, indexSticker),  {...sticker, [key]: value}, ...stickersArray.slice(indexSticker + 1)];
-        return [...newStickersArray];
-    }
+    };
 
     const deleteSticker = (id) => {
         setStickersArray([...setSticker(id)]);
@@ -62,22 +61,16 @@ const App = () => {
             return;
         }
         let grabElem = grab.closest('.sticker');
-        let grabElemWidth = grabElem.offsetWidth;
-        let grabElemHeight = grabElem.offsetHeight;
         let board = document.querySelector('.board-area');
-        let boardLeft = board.offsetLeft;
-        let boardTop = board.offsetTop;
-        let boardWidth = board.offsetWidth;
-        let boardHeight = board.offsetHeight;
         let shiftX = event.clientX - grabElem.getBoundingClientRect().left;
         let shiftY = event.clientY - grabElem.getBoundingClientRect().top;
 
         const stickerMove = (event) => {
-            let left = event.pageX - shiftX - boardLeft;
-            let top = event.pageY - shiftY - boardTop;
+            let left = event.pageX - shiftX - board.offsetLeft;;
+            let top = event.pageY - shiftY -  board.offsetTop;
 
-            let right = boardWidth - left - grabElemWidth;
-            let bottom = boardHeight - top - grabElemHeight;
+            let right = board.offsetWidth - left - grabElem.offsetWidth;;
+            let bottom = board.offsetHeight - top - grabElem.offsetHeight;
 
             if (left < 0 || top < 0 || right < 0 || bottom < 0) {
                 return;
