@@ -28,31 +28,29 @@ const App = () => {
         setStickersArray([...stickersArray.slice(0, 1)]);
     };
 
-    const deleteSticker = (id) => {
+    function setSticker(id, key, value) {
         const indexSticker = stickersArray.findIndex((item) => item.id === id);
-        const newStickersArray = [...stickersArray.slice(0, indexSticker), ...stickersArray.slice(indexSticker + 1)];
-        setStickersArray([...newStickersArray]);
+        const sticker = stickersArray[indexSticker];
+        const newStickersArray = (key === undefined) ? [...stickersArray.slice(0, indexSticker), ...stickersArray.slice(indexSticker + 1)] :
+            [...stickersArray.slice(0, indexSticker),  {...sticker, [key]: value}, ...stickersArray.slice(indexSticker + 1)];
+        return [...newStickersArray];
+    }
+
+    const deleteSticker = (id) => {
+        setStickersArray([...setSticker(id)]);
     };
 
     const changeTextarea = (valueSticker, id) => {
-        const indexSticker = stickersArray.findIndex((item) => item.id === id);
-        const sticker = stickersArray[indexSticker];
-        const newStickersArray = [...stickersArray.slice(0, indexSticker),  {...sticker, value: valueSticker}, ...stickersArray.slice(indexSticker + 1)];
-        setStickersArray([...newStickersArray]);
+        setStickersArray([...setSticker(id, 'value', valueSticker)]);
     };
 
     const saveSticker = (id) => {
-        const indexSticker = stickersArray.findIndex((item) => item.id === id);
-        const sticker = stickersArray[indexSticker];
-        const newStickersArray = [...stickersArray.slice(0, indexSticker),  {...sticker, save: true}, ...stickersArray.slice(indexSticker + 1)];
-        setStickersArray([...newStickersArray]);
+        setStickersArray([...setSticker(id, 'save', true)]);
     };
 
+
     const editSticker = (id) => {
-        const indexSticker = stickersArray.findIndex((item) => item.id === id);
-        const sticker = stickersArray[indexSticker];
-        const newStickersArray = [...stickersArray.slice(0, indexSticker),  {...sticker, save: false}, ...stickersArray.slice(indexSticker + 1)];
-        setStickersArray([...newStickersArray]);
+        setStickersArray([...setSticker(id, 'save', false)]);
     };
 
     /*Drag'n'Drop на костылях в общем :) */
