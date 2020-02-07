@@ -21,6 +21,10 @@ const App = () => {
 
     const addStickers = () => {
         const newId = stickersArray.length ? stickersArray[stickersArray.length - 1].id : 0;
+        if (stickersArray.length === 24) {
+            console.log('Максимум стикеров уже добавлено!');
+            return;
+        }
         setStickersArray([...stickersArray, {id: newId + 1, value: '', save: false, x: 0, y: 0, position: 'relative'}]);
     };
 
@@ -61,12 +65,13 @@ const App = () => {
             return;
         }
         let grabElem = grab.closest('.sticker');
+        grabElem.style.zIndex = id;
         let board = document.querySelector('.board-area');
         let shiftX = event.clientX - grabElem.getBoundingClientRect().left;
         let shiftY = event.clientY - grabElem.getBoundingClientRect().top;
 
         const stickerMove = (event) => {
-            let left = event.pageX - shiftX - board.offsetLeft;;
+            let left = event.pageX - shiftX - board.offsetLeft;
             let top = event.pageY - shiftY -  board.offsetTop;
 
             let right = board.offsetWidth - left - grabElem.offsetWidth;
