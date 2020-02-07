@@ -7,10 +7,6 @@ const Sticker = ({sticker, onDeleteSticker, onChangeTextarea, onSaveSticker, onE
         onChangeTextarea(e.target.value, id);
     };
 
-    if (sticker.id < 1) {
-        return null;
-    }
-
     return (
         <div className='sticker'
              style={{position: sticker.position, top: sticker.y, left: sticker.x}}
